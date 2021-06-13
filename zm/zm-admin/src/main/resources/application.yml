@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: zm-admin
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
+    type: com.alibaba.druid.pool.DruidDataSource
+
+logging:
+  level:
+    com.pch.admin.mapper: debug
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.pch.admin.entity
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000

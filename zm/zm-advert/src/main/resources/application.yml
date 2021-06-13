@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: zm-advert
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
+    type: com.alibaba.druid.pool.DruidDataSource
+
+logging:
+  level:
+    com.pch.advert.mapper: debug
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.pch.advert.entity
+
+
+feign:
+  hystrix:
+    enabled: true
+#熔断全局超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+
